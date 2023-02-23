@@ -34,7 +34,7 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
-                if key == 'created_at' and key == 'update_at':
+                if key == 'created_at' and key == 'updated_at':
                     setattr(self, key, datetime.fromisoformat(value))
                 elif key != '__class__':
                     setattr(self, key, value)
@@ -42,20 +42,20 @@ class BaseModel():
         else:
             self.id = str(uuid4())
             self.created_at = datetime.today()
-            self.update_at = datetime.today()
+            self.updated_at = datetime.today()
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates @update_at attribute"""
-        self.update_at = datetime.today()
+        self.updated_at = datetime.today()
 
     def to_dict(self):
         """Return self.__dict__ of instance"""
         self.created_at = datetime.isoformat(self.created_at)
-        self.update_at = datetime.isoformat(self.update_at)
-        a_dict = self.__dict__
+        self.updated_at = datetime.isoformat(self.updated_at)
+        a_dict = self.__dict__.copy()
         a_dict.update({"__class__" : self.__class__.__name__})
 
         return a_dict

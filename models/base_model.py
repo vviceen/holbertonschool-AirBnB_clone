@@ -34,7 +34,7 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
-                if key is 'created_at' and 'update_at':
+                if key == 'created_at' and key == 'update_at':
                     setattr(self, key, datetime.fromisoformat(value))
                 elif key != '__class__':
                     setattr(self, key, value)

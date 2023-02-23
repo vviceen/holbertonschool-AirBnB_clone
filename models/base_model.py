@@ -32,15 +32,15 @@ class BaseModel():
 
     """
     def __init__(self, *args, **kwargs):
-        if kwargs and kwargs is dict:
+        if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' and key == 'updated_at':
                     setattr(self, key, datetime.fromisoformat(value))
                 elif key != '__class__':
                     setattr(self, key, value)
 
-        elif kwargs is not dict:
-            storage.new(kwargs)
+        elif args:
+            storage.new(args)
 
         else:
             self.id = str(uuid4())

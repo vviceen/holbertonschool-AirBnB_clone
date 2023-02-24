@@ -2,7 +2,7 @@
 """Holds abstract class BaseModel"""
 from uuid import uuid4
 from datetime import datetime
-from models.__init__ import storage
+from models import storage
 
 class BaseModel():
     """
@@ -34,18 +34,16 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
-                if key == 'created_at' and key == 'updated_at':
+                if key == 'created_at' or key == 'updated_at':
                     setattr(self, key, datetime.fromisoformat(value))
                 elif key != '__class__':
                     setattr(self, key, value)
-
-        elif args:
-            storage.new(args)
 
         else:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            storage.new(self)
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
@@ -57,9 +55,9 @@ class BaseModel():
 
     def to_dict(self):
         """Return self.__dict__ of instance"""
-        self.created_at = datetime.isoformat(self.created_at)
-        self.updated_at = datetime.isoformat(self.updated_at)
         a_dict = self.__dict__.copy()
         a_dict.update({"__class__" : self.__class__.__name__})
+        a_dict.update({'created_at': self.created_at.isoformat()})
+        a_dict.update({"updated_at": self.updated_at.isoformat()})
 
         return a_dict

@@ -21,8 +21,9 @@ class Test_attributes_methods_BaseModel(unittest.TestCase):
         my_model = BaseModel()
         dict_model = my_model.to_dict()
 
-        print(dict_model)
-        self.assertTrue(dict_model == my_model.to_dict())
+        self.assertEqual(type(dict_model), dict)
+        self.assertEqual(type(dict_model["created_at"]), str)
+        self.assertEqual(type(dict_model["updated_at"]), str)
 
     def test_id(self):
         """There is a Id?"""
@@ -42,9 +43,20 @@ class Test_attributes_methods_BaseModel(unittest.TestCase):
 
     def test_str(self):
         """There is a str representation?"""
-        my_model = BaseModel
-        print(my_model)
+        m = BaseModel()
+        m_print = f'[{m.__class__.__name__}] ({m.id}) {m.__dict__}'
+
+        self.assertEqual(m_print, m.__str__())
+
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+
+
+
+
+
+

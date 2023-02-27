@@ -48,6 +48,12 @@ class Test_attributes_methods_BaseModel(unittest.TestCase):
 
         self.assertEqual(m_print, m.__str__())
 
+    def test_save(self):
+        """@FileStorage.save runs?"""
+        my_model = BaseModel()
+        my_model.save()
+        x = storage.all().get(f"BaseModel.{my_model.id}")
+        self.assertEqual(my_model, x)
 
 
 if __name__ == "__main__":

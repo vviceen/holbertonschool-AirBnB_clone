@@ -131,9 +131,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        a_object = storage.all().get(f"{arg_list[0]}.{arg_list[1]}")
-        setattr(a_object, arg_list[2], arg_list[3])
-        storage.save()
+        try:
+            a_object = storage.all().get(f"{arg_list[0]}.{arg_list[1]}")
+            setattr(a_object, arg_list[2], arg_list[3])
+            storage.save()
+
+        except AttributeError:
+            print("** no instance found **")
+            return
 
 
 if __name__ == '__main__':

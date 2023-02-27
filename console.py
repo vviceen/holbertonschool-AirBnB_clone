@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 """This is my terminal module"""
 import cmd, json
-from models.base_model import BaseModel
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """AirBnB clone terminal"""
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def do_EOF(self, arg):
         """Exit the terminal, equal as quit command."""
@@ -21,13 +22,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Create a new BaseModel instance."""
-        if arg != "BaseModel":
+        if arg not in HBNBCommand.classes:
             if arg == "":
                 print("** class name missing **")
             else:
                 print("** class doesn't exist **")
         else:
-            new = BaseModel()
+            new = HBNBCommand.classes.get(arg)()
             new.save()
             print(new.id)
 

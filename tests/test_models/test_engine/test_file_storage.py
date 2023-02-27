@@ -3,10 +3,10 @@
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-from os import path
+from os import path, stat
 
 
-class Test_attributes_methods_FileStroage(unittest.TestCase):
+class Test_attributes_methods_FileStorage(unittest.TestCase):
     """Lets rock"""
     def test___file_path(self):
         """__file_path exists?"""
@@ -37,6 +37,14 @@ class Test_attributes_methods_FileStroage(unittest.TestCase):
 
         self.assertTrue(my_objs != my_storage.all())
 
+    def test_save(self):
+        """@FileStorage.save runs?"""
+        my_storage = FileStorage()
+        my_storage.save()
+
+        self.assertTrue(path.isfile("file.json"))
+        self.assertNotEqual(stat("file.json").st_size, 0)
+        self.assertEqual(path.splitext("file.json")[1], ".json")
 
 if __name__ == "__main__":
     unittest.main()

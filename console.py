@@ -91,18 +91,24 @@ class HBNBCommand(cmd.Cmd):
         Print all instances of type <ClassName>.
         USE: all <ClassName>
         """
-        if arg not in HBNBCommand.classes:
+        search = storage.all()
+        list_all = []
+
+        if arg not in HBNBCommand.classes and len(arg) != 0:
             print("** class doesn't exist **")
             return
 
+        elif (len(arg) == 0):
+            for key, values in search.items():
+                    list_all.append(str(values))
+
         else:
-            search = storage.all()
-            list_all = []
             for key, values in search.items():
                 x = key.split('.')
                 if x[0] == arg:
                     list_all.append(str(values))
-            print(list_all)
+
+        print(list_all)
 
     def do_update(self, arg):
         """

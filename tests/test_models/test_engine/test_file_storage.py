@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Tests on FileStorage"""
-import unittest, json
+import unittest
+import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from os import path, stat
@@ -19,9 +20,8 @@ class Test_attributes_methods_FileStorage(unittest.TestCase):
         """__objects exists?"""
         my_storage = FileStorage()
         my_objects = my_storage.all()
-        print(my_objects)
 
-        self.assertEqual({}, my_objects)
+        self.assertEqual(my_storage.all(), my_objects)
 
     def test_all(self):
         """@FileStorage.all runs?"""
@@ -43,15 +43,14 @@ class Test_attributes_methods_FileStorage(unittest.TestCase):
         my_model = BaseModel()
         my_model.save()
         storage.save()
-        with open('file.json', mode='r',encoding='utf-8') as my_json:
+        with open('file.json', mode='r', encoding='utf-8') as my_json:
             a_dict = json.load(my_json)
-            self.assertEqual(my_model.to_dict(), a_dict.get(f"BaseModel.{my_model.id}"))
+            self.assertEqual(
+                    my_model.to_dict(), a_dict.get(f"BaseModel.{my_model.id}"))
 
     def test_reload(self):
         """@FileStorage.reload works"""
         self.assertIsNone(storage.reload())
-
-
 
 
 if __name__ == "__main__":

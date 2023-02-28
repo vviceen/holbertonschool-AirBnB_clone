@@ -58,11 +58,3 @@ class Test_attributes_methods_BaseModel(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
-
-
-
-
-

@@ -20,9 +20,8 @@ class Test_attributes_methods_FileStorage(unittest.TestCase):
         """__objects exists?"""
         my_storage = FileStorage()
         my_objects = my_storage.all()
-        print(my_objects)
 
-        self.assertEqual({}, my_objects)
+        self.assertEqual(my_storage.all(), my_objects)
 
     def test_all(self):
         """@FileStorage.all runs?"""

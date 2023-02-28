@@ -7,6 +7,15 @@ from models import storage
 
 class Test_attributes_methods_BaseModel(unittest.TestCase):
     """Let's rock"""
+    def test_save(self):
+        """Instance is saved and updated?"""
+        my_model = BaseModel()
+        up_time = my_model.updated_at
+        my_model.save()
+
+        self.assertTrue(up_time != my_model.updated_at)
+        self.assertTrue(path.exists('file.json'))
+
     def test_to_dict(self):
         """There is a dict to serialize?"""
         my_model = BaseModel()
@@ -38,14 +47,6 @@ class Test_attributes_methods_BaseModel(unittest.TestCase):
         m_print = f'[{m.__class__.__name__}] ({m.id}) {m.__dict__}'
 
         self.assertEqual(m_print, m.__str__())
-
-    def test_save(self):
-        """@FileStorage.save runs?"""
-        my_model = BaseModel()
-        my_model.save()
-        x = storage.all().get(f"BaseModel.{my_model.id}")
-        self.assertEqual(my_model, x)
-
 
 if __name__ == "__main__":
     unittest.main()

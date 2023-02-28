@@ -8,10 +8,10 @@ class City(BaseModel):
     City Class
     ----------
     state_id : str
-        empty string by defoult, here put @State.id
+        empty string by default, here put @State.id
 
     name : str
-        empty string by defoult
+        empty string by default
     """
     state_id = ""
     name = ""

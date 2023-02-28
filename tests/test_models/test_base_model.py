@@ -2,9 +2,8 @@
 """Tests on BaseModel"""
 import unittest
 from models.base_model import BaseModel
-from models import storage
 from os import path
-
+from models import storage
 
 class Test_attributes_methods_BaseModel(unittest.TestCase):
     """Let's rock"""

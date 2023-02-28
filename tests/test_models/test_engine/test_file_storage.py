@@ -50,8 +50,14 @@ class Test_attributes_methods_FileStorage(unittest.TestCase):
 
     def test_reload(self):
         """@FileStorage.reload works"""
-        self.assertIsNone(storage.reload())
-
+        my_model = BaseModel()
+        key = f"BaseModel.{my_model.id}"
+        storage.save()
+        self.assertTrue(path.isfile('file.json'))
+        FileStorage.__objects = {}
+        storage.reload()
+        self.assertTrue(key in storage.all().keys())
+        self.assertEqual(my_model.id, storage.all()[key].id)
 
 if __name__ == "__main__":
     unittest.main()

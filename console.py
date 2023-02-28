@@ -155,6 +155,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
+    def emptyline(self):
+        return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

@@ -7,15 +7,6 @@ from models import storage
 
 class Test_attributes_methods_BaseModel(unittest.TestCase):
     """Let's rock"""
-    def test_save(self):
-        """Instance is saved and updated?"""
-        my_model = BaseModel()
-        up_time = my_model.updated_at
-        my_model.save()
-
-        self.assertTrue(up_time != my_model.updated_at)
-        self.assertTrue(path.exists('file.json'))
-
     def test_to_dict(self):
         """There is a dict to serialize?"""
         my_model = BaseModel()

@@ -23,7 +23,6 @@ a class what manage 'BaseModel' and his subcalsses for serialization and deseria
 
 https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230228%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230228T152226Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=862ba3ba5a08fe85a23a834069192be0299c9156fc900a51bfaa48c395029da2
 
-
 ### Usage
 
 ```

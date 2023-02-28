@@ -4,5 +4,10 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """State Class"""
+    """
+    State Class
+    -----------
+    name : str
+        empty string by defoult
+    """
     name = ""

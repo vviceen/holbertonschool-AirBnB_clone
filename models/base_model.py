@@ -4,6 +4,7 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
+
 class BaseModel():
     """
     BaseModel:
@@ -56,7 +57,7 @@ class BaseModel():
     def to_dict(self):
         """Return self.__dict__ of instance"""
         a_dict = self.__dict__.copy()
-        a_dict.update({"__class__" : self.__class__.__name__})
+        a_dict.update({"__class__": self.__class__.__name__})
         a_dict.update({'created_at': self.created_at.isoformat()})
         a_dict.update({"updated_at": self.updated_at.isoformat()})
 

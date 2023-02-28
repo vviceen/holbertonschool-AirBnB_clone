@@ -23,7 +23,7 @@ class FileStorage():
     def save(self):
         json_objs = {}
         for key, value in self.__objects.items():
-            json_objs.update({key:value.to_dict()})
+            json_objs.update({key: value.to_dict()})
 
         with open(self.__file_path, mode='w', encoding='utf-8') as a_file:
             json.dump(json_objs, a_file)
@@ -40,10 +40,18 @@ class FileStorage():
             return
 
         else:
-            dict_classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City, "Amenity": Amenity, "Review": Review, "Place": Place}
+            dict_classes = {"BaseModel": BaseModel,
+                            "User": User,
+                            "State": State,
+                            "City": City,
+                            "Amenity": Amenity,
+                            "Review": Review,
+                            "Place": Place}
+
             with open(self.__file_path, mode='r', encoding='utf-8') as a_file:
                 self.__objects = {}
                 json_loads = json.load(a_file)
                 for key, value in json_loads.items():
                     x = key.split('.')
-                    self.__objects.update({key:dict_classes.get(x[0])(**value)})
+                    self.__objects.update(
+                            {key: dict_classes.get(x[0])(**value)})

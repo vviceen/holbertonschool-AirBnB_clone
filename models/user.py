@@ -5,7 +5,19 @@ from models.base_model import BaseModel
 
 class User(BaseModel):
     """
-    DOC
+    User Class Model
+    ----------------
+    email : str
+        empty string by defoult
+
+    password : str
+        empty string by defoult
+
+    first_name : str
+        empty string by defoult
+
+    last_name : str
+        empty string by defoult
     """
     email = ""
     password = ""

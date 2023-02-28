@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This is my terminal module"""
-import cmd, json
+import cmd
+import json
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -15,7 +16,8 @@ class HBNBCommand(cmd.Cmd):
     """AirBnB clone terminal"""
     prompt = "(hbnb) "
     classes = {"BaseModel": BaseModel, "User": User, "State": State,
-            "City": City, "Amenity": Amenity, "Review": Review, 'Place': Place}
+               "City": City, "Amenity": Amenity,
+               "Review": Review, 'Place': Place}
 
     def do_EOF(self, arg):
         """Exit the terminal, equal as quit command."""
@@ -60,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
 
         obj = storage.all().get(f"{arg[0]}.{arg[1]}")
 
-        if obj != None:
+        if obj is not None:
             print(obj)
         else:
             print("** no instance found **")
@@ -107,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
 
         elif (len(arg) == 0):
             for key, values in search.items():
-                    list_all.append(str(values))
+                list_all.append(str(values))
 
         else:
             for key, values in search.items():

@@ -9,10 +9,12 @@ class Test_attributes_methods_Review(unittest.TestCase):
         t_review = Review()
         self.assertTrue(not t_review.place_id)
         self.assertTrue(type(t_review.place_id) is str)
+
     def test_user_id(self):
         t_review = Review()
         self.assertTrue(not t_review.user_id)
         self.assertTrue(type(t_review.user_id) is str)
+
     def test_text(self):
         t_review = Review()
         self.assertTrue(not t_review.text)

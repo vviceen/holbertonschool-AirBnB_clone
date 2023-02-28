@@ -54,10 +54,9 @@ class Test_attributes_methods_FileStorage(unittest.TestCase):
         key = f"BaseModel.{my_model.id}"
         storage.save()
         self.assertTrue(path.isfile('file.json'))
-        FileStorage.__objects = {}
         storage.reload()
         self.assertTrue(key in storage.all().keys())
-        self.assertEqual(my_model.id, storage.all()[key].id)
+        self.assertEqual(my_model.id, storage.all().get(key).id)
 
 if __name__ == "__main__":
     unittest.main()

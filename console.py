@@ -4,12 +4,18 @@ import cmd, json
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
 
 
 class HBNBCommand(cmd.Cmd):
     """AirBnB clone terminal"""
     prompt = "(hbnb) "
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = {"BaseModel": BaseModel, "User": User, "State": State,
+            "City": City, "Amenity": Amenity, "Review": Review, 'Place': Place}
 
     def do_EOF(self, arg):
         """Exit the terminal, equal as quit command."""

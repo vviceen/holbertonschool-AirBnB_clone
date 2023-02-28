@@ -30,12 +30,20 @@ class FileStorage():
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+        from models.place import Place
         if not path.exists(self.__file_path):
             return
 
         else:
+            dict_classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City, "Amenity": Amenity, "Review": Review, "Place": Place}
             with open(self.__file_path, mode='r', encoding='utf-8') as a_file:
                 self.__objects = {}
                 json_loads = json.load(a_file)
                 for key, value in json_loads.items():
-                    self.__objects.update({key:BaseModel(**value)})
+                    x = key.split('.')
+                    self.__objects.update({key:dict_classes.get(x[0])(**value)})

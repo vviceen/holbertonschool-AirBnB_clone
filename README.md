@@ -2,7 +2,7 @@
 
 The goal of the project is fully clone the AirBnB application
 
-# Learning Objectivex
+# Learning Objectives
 
 - How to create a Python package
 - How to create a command interpreter in Python using the cmd module
